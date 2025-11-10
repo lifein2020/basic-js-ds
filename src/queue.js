@@ -18,27 +18,19 @@ class Queue {
       this.tail = null;
     }
   getUnderlyingList() {
-    function convert(node) {
-			if (!node) return null;
-			return {
-				value: node.value,
-				next: convert(node.next),
-			};
-		}
-
-		return convert(this.head);
+    return this.head;
   }
 
   enqueue(value) {
     const newNode = new ListNode(value);
 
-		if (!this.head) {
-			this.head = newNode;
-			this.tail = newNode;
-		} else {
-			this.tail.next = newNode;
-			this.tail = newNode;
-		}
+    if (this.head) {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    } else {
+      this.head = newNode;
+      this.tail = newNode;
+    }
   }
 
   dequeue() {
